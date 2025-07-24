@@ -11,10 +11,10 @@ const mainNavItems = [
 ]
 
 const serviceItems = [
-  { name: "Networks", href: "/networks" },
-  { name: "Guides", href: "/guides" },
-  { name: "Tools", href: "/tools" },
-  { name: "Snapshots", href: "/snapshots" },
+  { name: "Networks", href: "/networks", description: "Monitor blockchain networks" },
+  { name: "Guides", href: "/guides", description: "Step-by-step tutorials" },
+  { name: "Tools", href: "/tools", description: "Validator utilities" },
+  { name: "Snapshots", href: "/snapshots", description: "Quick node sync" },
 ]
 
 export default function Navbar() {
@@ -73,26 +73,34 @@ export default function Navbar() {
                 )}>▾</span>
               </button>
               
-              {/* Dropdown Menu */}
+              {/* Enhanced Dropdown Menu */}
               <div className={cn(
-                "absolute top-full left-0 mt-1 w-48 bg-background/95 backdrop-blur border border-border rounded-md shadow-xl transition-all duration-300 transform origin-top",
+                "absolute top-full left-0 mt-2 w-64 glass-dark rounded-lg shadow-2xl transition-all duration-300 transform origin-top border border-purple-500/20",
                 servicesOpen 
                   ? "opacity-100 scale-100 translate-y-0" 
                   : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
               )}>
-                <div className="py-2">
-                  {serviceItems.map((item) => (
+                <div className="py-3">
+                  {serviceItems.map((item, index) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "block px-4 py-2 text-sm transition-all duration-200 hover:bg-accent hover:text-accent-foreground hover:translate-x-1",
+                        "block px-4 py-3 text-sm transition-all duration-300 hover:bg-purple-500/10 hover:translate-x-2 group border-l-2 border-transparent hover:border-purple-400",
                         pathname === item.href
-                          ? "bg-purple-500/10 text-purple-400 border-r-2 border-purple-400"
+                          ? "bg-purple-500/15 text-purple-400 border-l-purple-400"
                           : "text-muted-foreground hover:text-foreground"
                       )}
+                      style={{ animationDelay: `${index * 50}ms` }}
                     >
-                      {item.name}
+                      <div className="flex flex-col">
+                        <span className="font-medium group-hover:text-purple-300 transition-colors duration-200">
+                          {item.name}
+                        </span>
+                        <span className="text-xs text-muted-foreground/70 mt-1 group-hover:text-muted-foreground transition-colors duration-200">
+                          {item.description}
+                        </span>
+                      </div>
                     </Link>
                   ))}
                 </div>

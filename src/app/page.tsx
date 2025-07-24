@@ -4,36 +4,120 @@ import { Badge } from "@/components/ui/badge"
 
 export default function HomePage() {
   return (
-      {/* Hero Section */}
-      <div className="flex flex-col items-center text-center space-y-8 mb-20">
-        <div className="space-y-6 animate-float">
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent leading-tight">
-            Blockchain Validator Dashboard
+    <div className="container mx-auto px-4 py-8 space-y-20">
+      {/* Enhanced Hero Section */}
+      <div className="flex flex-col items-center text-center space-y-10 mb-24">
+        <div className="space-y-8 animate-float">
+          <h1 className="text-6xl md:text-8xl font-bold cosmic-gradient-text leading-tight animate-fade-in">
+            Cosmic Validator Hub
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Monitor your blockchain PoS validator nodes, view network performance, and stay updated with real-time node statistics across multiple networks.
-          </p>
+          <div className="space-y-4">
+            <p className="text-2xl md:text-3xl text-muted-foreground max-w-5xl mx-auto leading-relaxed animate-slide-in-left">
+              Navigate the vast cosmos of blockchain validation
+            </p>
+            <p className="text-lg md:text-xl text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed animate-slide-in-right">
+              Monitor your PoS validator nodes, explore network performance, and stay synchronized with real-time statistics across the blockchain universe.
+            </p>
+          </div>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-6 mt-8">
+        <div className="flex flex-col sm:flex-row gap-8 mt-12">
           <Link 
             href="/dashboard"
-            className="group inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-purple-600 to-purple-700 px-10 py-4 text-lg font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 animate-glow"
+            className="btn-cosmic group inline-flex items-center justify-center rounded-xl px-12 py-5 text-xl font-semibold text-white transition-all duration-300 hover-lift animate-glow"
           >
-            <span className="group-hover:translate-x-1 transition-transform duration-300">View Dashboard</span>
+            <span className="group-hover:translate-x-2 transition-transform duration-300">Launch Dashboard</span>
           </Link>
           <Link 
             href="/networks"
-            className="group inline-flex items-center justify-center rounded-lg border border-purple-500/30 bg-background/50 backdrop-blur px-10 py-4 text-lg font-medium transition-all duration-300 hover:scale-105 hover:bg-purple-500/10 hover:border-purple-400 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 glass"
+            className="group inline-flex items-center justify-center rounded-xl border-2 border-purple-500/40 glass px-12 py-5 text-xl font-semibold transition-all duration-300 hover-lift hover:border-purple-400 hover:bg-purple-500/10 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
           >
-            <span className="group-hover:translate-x-1 transition-transform duration-300">Explore Networks</span>
+            <span className="group-hover:translate-x-2 transition-transform duration-300">Explore Cosmos</span>
           </Link>
         </div>
       </div>
 
-      {/* Features Grid */}
+      {/* Featured Services Section */}
+      <div className="mb-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Featured Services</h2>
+          <p className="text-muted-foreground text-lg">Discover the power of our cosmic validation platform</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <Card className="glass-dark border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-500 animate-cosmic-drift">
+            <CardHeader className="pb-4">
+              <div className="w-16 h-16 rounded-full cosmic-gradient mx-auto mb-4 flex items-center justify-center animate-pulse">
+                <div className="w-8 h-8 rounded-full bg-white/20"></div>
+              </div>
+              <CardTitle className="text-purple-400 text-xl group-hover:text-purple-300 transition-colors duration-300 text-center">Network Monitoring</CardTitle>
+              <CardDescription className="text-muted-foreground/80 leading-relaxed text-center">
+                Real-time blockchain network surveillance across the cosmos
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Link href="/networks" className="text-purple-400 hover:text-purple-300 text-sm font-medium group-hover:underline transition-all duration-300">
+                Explore Networks →
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-dark border-blue-500/20 card-3d group hover:border-blue-400/40 transition-all duration-500 animate-cosmic-drift" style={{ animationDelay: '1s' }}>
+            <CardHeader className="pb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-700/20 mx-auto mb-4 flex items-center justify-center animate-pulse">
+                <div className="w-8 h-8 rounded-full bg-blue-400/30"></div>
+              </div>
+              <CardTitle className="text-blue-400 text-xl group-hover:text-blue-300 transition-colors duration-300 text-center">Expert Guides</CardTitle>
+              <CardDescription className="text-muted-foreground/80 leading-relaxed text-center">
+                Navigate validation with comprehensive tutorials and wisdom
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Link href="/guides" className="text-blue-400 hover:text-blue-300 text-sm font-medium group-hover:underline transition-all duration-300">
+                Access Guides →
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-dark border-green-500/20 card-3d group hover:border-green-400/40 transition-all duration-500 animate-cosmic-drift" style={{ animationDelay: '2s' }}>
+            <CardHeader className="pb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500/20 to-green-700/20 mx-auto mb-4 flex items-center justify-center animate-pulse">
+                <div className="w-8 h-8 rounded-full bg-green-400/30"></div>
+              </div>
+              <CardTitle className="text-green-400 text-xl group-hover:text-green-300 transition-colors duration-300 text-center">Validator Tools</CardTitle>
+              <CardDescription className="text-muted-foreground/80 leading-relaxed text-center">
+                Essential utilities for cosmic validator operations
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Link href="/tools" className="text-green-400 hover:text-green-300 text-sm font-medium group-hover:underline transition-all duration-300">
+                Launch Tools →
+              </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="glass-dark border-yellow-500/20 card-3d group hover:border-yellow-400/40 transition-all duration-500 animate-cosmic-drift" style={{ animationDelay: '3s' }}>
+            <CardHeader className="pb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-500/20 to-yellow-700/20 mx-auto mb-4 flex items-center justify-center animate-pulse">
+                <div className="w-8 h-8 rounded-full bg-yellow-400/30"></div>
+              </div>
+              <CardTitle className="text-yellow-400 text-xl group-hover:text-yellow-300 transition-colors duration-300 text-center">Quick Snapshots</CardTitle>
+              <CardDescription className="text-muted-foreground/80 leading-relaxed text-center">
+                Instant node synchronization across blockchain networks
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <Link href="/snapshots" className="text-yellow-400 hover:text-yellow-300 text-sm font-medium group-hover:underline transition-all duration-300">
+                Get Snapshots →
+              </Link>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* Enhanced Features Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        <Card className="glass border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-300">
+        <Card className="glass border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-300 hover-glow">
           <CardHeader className="pb-4">
             <CardTitle className="text-purple-400 text-xl group-hover:text-purple-300 transition-colors duration-300">Real-time Monitoring</CardTitle>
             <CardDescription className="text-muted-foreground/80 leading-relaxed">
@@ -41,61 +125,61 @@ export default function HomePage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform duration-300">99.9%</div>
+            <div className="text-4xl font-bold text-green-400 mb-2 group-hover:scale-110 transition-transform duration-300 animate-pulse">99.9%</div>
             <p className="text-sm text-muted-foreground">Average uptime across all networks</p>
           </CardContent>
         </Card>
 
-        <Card className="glass border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-300">
+        <Card className="glass border-blue-500/20 card-3d group hover:border-blue-400/40 transition-all duration-300 hover-glow">
           <CardHeader className="pb-4">
-            <CardTitle className="text-purple-400 text-xl group-hover:text-purple-300 transition-colors duration-300">Multi-Network Support</CardTitle>
+            <CardTitle className="text-blue-400 text-xl group-hover:text-blue-300 transition-colors duration-300">Multi-Network Support</CardTitle>
             <CardDescription className="text-muted-foreground/80 leading-relaxed">
               Monitor validators across multiple blockchain networks and testnets with unified dashboard experience
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
+            <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:scale-110 transition-transform duration-300 animate-pulse">25+</div>
             <p className="text-sm text-muted-foreground">Supported networks and growing</p>
           </CardContent>
         </Card>
 
-        <Card className="glass border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-300">
+        <Card className="glass border-yellow-500/20 card-3d group hover:border-yellow-400/40 transition-all duration-300 hover-glow">
           <CardHeader className="pb-4">
-            <CardTitle className="text-purple-400 text-xl group-hover:text-purple-300 transition-colors duration-300">Advanced Analytics</CardTitle>
+            <CardTitle className="text-yellow-400 text-xl group-hover:text-yellow-300 transition-colors duration-300">Advanced Analytics</CardTitle>
             <CardDescription className="text-muted-foreground/80 leading-relaxed">
               Comprehensive performance charts and historical data analysis with predictive insights
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+            <div className="text-4xl font-bold text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300 animate-pulse">24/7</div>
             <p className="text-sm text-muted-foreground">Continuous data collection</p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Supported Networks Section */}
-      <div className="mb-16">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Supported Networks</h2>
-          <p className="text-muted-foreground">Monitor validators across leading blockchain networks</p>
+      {/* Enhanced Supported Networks Section */}
+      <div className="mb-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Cosmic Network Support</h2>
+          <p className="text-muted-foreground text-lg">Monitor validators across leading blockchain networks in the cosmos</p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {[
-            { name: "Cosmos Hub", symbol: "ATOM", color: "bg-blue-500/10 text-blue-400 border-blue-500/20" },
-            { name: "Osmosis", symbol: "OSMO", color: "bg-purple-500/10 text-purple-400 border-purple-500/20" },
-            { name: "Juno", symbol: "JUNO", color: "bg-orange-500/10 text-orange-400 border-orange-500/20" },
-            { name: "Akash", symbol: "AKT", color: "bg-green-500/10 text-green-400 border-green-500/20" },
-            { name: "Secret", symbol: "SCRT", color: "bg-red-500/10 text-red-400 border-red-500/20" },
-            { name: "Kava", symbol: "KAVA", color: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20" }
-          ].map((network) => (
-            <Card key={network.name} className="bg-card/30 border-border hover:bg-card/50 transition-colors">
-              <CardContent className="p-4 text-center">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 mx-auto mb-2 flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">{network.symbol.slice(0, 2)}</span>
+            { name: "Cosmos Hub", symbol: "ATOM", color: "from-blue-500 to-blue-700", textColor: "text-blue-400" },
+            { name: "Osmosis", symbol: "OSMO", color: "from-purple-500 to-purple-700", textColor: "text-purple-400" },
+            { name: "Juno", symbol: "JUNO", color: "from-orange-500 to-orange-700", textColor: "text-orange-400" },
+            { name: "Akash", symbol: "AKT", color: "from-green-500 to-green-700", textColor: "text-green-400" },
+            { name: "Secret", symbol: "SCRT", color: "from-red-500 to-red-700", textColor: "text-red-400" },
+            { name: "Kava", symbol: "KAVA", color: "from-yellow-500 to-yellow-700", textColor: "text-yellow-400" }
+          ].map((network, index) => (
+            <Card key={network.name} className="glass hover:glass-dark transition-all duration-300 card-3d-subtle hover-lift group" style={{ animationDelay: `${index * 100}ms` }}>
+              <CardContent className="p-6 text-center">
+                <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${network.color} mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 animate-pulse`}>
+                  <span className="text-white font-bold text-lg">{network.symbol.slice(0, 2)}</span>
                 </div>
-                <div className="font-semibold text-sm text-foreground">{network.name}</div>
-                <Badge variant="outline" className={`text-xs mt-1 ${network.color}`}>
+                <div className="font-semibold text-foreground mb-2 group-hover:text-white transition-colors duration-300">{network.name}</div>
+                <Badge variant="outline" className={`${network.textColor} border-current/20 bg-current/10`}>
                   {network.symbol}
                 </Badge>
               </CardContent>
@@ -104,116 +188,116 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Stats Section */}
-      <div className="bg-gradient-to-r from-purple-900/20 to-purple-800/20 rounded-lg p-8 border border-purple-500/20">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Network Overview</h2>
-          <p className="text-muted-foreground">Current statistics across all monitored networks</p>
+      {/* Enhanced Stats Section */}
+      <div className="milky-way-gradient rounded-2xl p-12 border border-purple-500/20 mb-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Cosmic Network Overview</h2>
+          <p className="text-muted-foreground text-lg">Current statistics across all monitored networks in the universe</p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2">1,234</div>
-            <div className="text-sm text-muted-foreground">Active Validators</div>
+          <div className="text-center group">
+            <div className="text-5xl font-bold text-purple-400 mb-3 group-hover:scale-110 transition-transform duration-300 animate-pulse">2,847</div>
+            <div className="text-muted-foreground font-medium">Active Validators</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-green-400 mb-2">98.7%</div>
-            <div className="text-sm text-muted-foreground">Network Uptime</div>
+          <div className="text-center group">
+            <div className="text-5xl font-bold text-green-400 mb-3 group-hover:scale-110 transition-transform duration-300 animate-pulse">99.2%</div>
+            <div className="text-muted-foreground font-medium">Network Uptime</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-400 mb-2">45.2M</div>
-            <div className="text-sm text-muted-foreground">Total Staked</div>
+          <div className="text-center group">
+            <div className="text-5xl font-bold text-blue-400 mb-3 group-hover:scale-110 transition-transform duration-300 animate-pulse">127.8M</div>
+            <div className="text-muted-foreground font-medium">Total Staked</div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-yellow-400 mb-2">8,567</div>
-            <div className="text-sm text-muted-foreground">Delegators</div>
+          <div className="text-center group">
+            <div className="text-5xl font-bold text-yellow-400 mb-3 group-hover:scale-110 transition-transform duration-300 animate-pulse">24,891</div>
+            <div className="text-muted-foreground font-medium">Delegators</div>
           </div>
         </div>
       </div>
 
-      {/* Why Choose ChainView Section */}
-      <div className="mb-16">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Why Choose ChainView?</h2>
-          <p className="text-muted-foreground">Everything you need to manage your validator operations</p>
+      {/* Enhanced Why Choose Section */}
+      <div className="mb-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Why Choose Cosmic Validator Hub?</h2>
+          <p className="text-muted-foreground text-lg">Everything you need to navigate the blockchain cosmos</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-6">
-            <div className="flex items-start space-x-4">
-              <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-3 h-3 rounded-full bg-purple-400"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="space-y-8">
+            <div className="flex items-start space-x-6 group">
+              <div className="w-12 h-12 rounded-full cosmic-gradient flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-6 h-6 rounded-full bg-white/30 animate-pulse"></div>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">Comprehensive Monitoring</h3>
-                <p className="text-muted-foreground text-sm">Track all your validators from a single dashboard with real-time updates and alerts.</p>
+                <h3 className="font-semibold text-foreground mb-3 text-lg group-hover:text-purple-300 transition-colors duration-300">Comprehensive Monitoring</h3>
+                <p className="text-muted-foreground leading-relaxed">Track all your validators from a single cosmic dashboard with real-time updates, alerts, and deep space analytics.</p>
               </div>
             </div>
             
-            <div className="flex items-start space-x-4">
-              <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-3 h-3 rounded-full bg-green-400"></div>
+            <div className="flex items-start space-x-6 group">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-500/20 to-green-700/20 flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-6 h-6 rounded-full bg-green-400/40 animate-pulse"></div>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">Network Snapshots</h3>
-                <p className="text-muted-foreground text-sm">Quick node synchronization with daily updated blockchain snapshots.</p>
+                <h3 className="font-semibold text-foreground mb-3 text-lg group-hover:text-green-300 transition-colors duration-300">Network Snapshots</h3>
+                <p className="text-muted-foreground leading-relaxed">Quick node synchronization with daily updated blockchain snapshots across the cosmic network.</p>
               </div>
             </div>
             
-            <div className="flex items-start space-x-4">
-              <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-3 h-3 rounded-full bg-blue-400"></div>
+            <div className="flex items-start space-x-6 group">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-700/20 flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-6 h-6 rounded-full bg-blue-400/40 animate-pulse"></div>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">Validator Tools</h3>
-                <p className="text-muted-foreground text-sm">Essential tools for setup, security, monitoring, and maintenance operations.</p>
+                <h3 className="font-semibold text-foreground mb-3 text-lg group-hover:text-blue-300 transition-colors duration-300">Validator Tools</h3>
+                <p className="text-muted-foreground leading-relaxed">Essential cosmic tools for setup, security, monitoring, and maintenance operations across the universe.</p>
               </div>
             </div>
           </div>
           
-          <div className="space-y-6">
-            <div className="flex items-start space-x-4">
-              <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div className="space-y-8">
+            <div className="flex items-start space-x-6 group">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-500/20 to-yellow-700/20 flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-6 h-6 rounded-full bg-yellow-400/40 animate-pulse"></div>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">Expert Guides</h3>
-                <p className="text-muted-foreground text-sm">Step-by-step tutorials and best practices from validator experts.</p>
+                <h3 className="font-semibold text-foreground mb-3 text-lg group-hover:text-yellow-300 transition-colors duration-300">Expert Guides</h3>
+                <p className="text-muted-foreground leading-relaxed">Step-by-step cosmic tutorials and best practices from validator experts across the galaxy.</p>
               </div>
             </div>
             
-            <div className="flex items-start space-x-4">
-              <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-3 h-3 rounded-full bg-red-400"></div>
+            <div className="flex items-start space-x-6 group">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500/20 to-red-700/20 flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-6 h-6 rounded-full bg-red-400/40 animate-pulse"></div>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">Performance Analytics</h3>
-                <p className="text-muted-foreground text-sm">Detailed charts and metrics to optimize your validator performance.</p>
+                <h3 className="font-semibold text-foreground mb-3 text-lg group-hover:text-red-300 transition-colors duration-300">Performance Analytics</h3>
+                <p className="text-muted-foreground leading-relaxed">Detailed cosmic charts and metrics to optimize your validator performance across space and time.</p>
               </div>
             </div>
             
-            <div className="flex items-start space-x-4">
-              <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-1">
-                <div className="w-3 h-3 rounded-full bg-purple-400"></div>
+            <div className="flex items-start space-x-6 group">
+              <div className="w-12 h-12 rounded-full cosmic-gradient flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-6 h-6 rounded-full bg-white/30 animate-pulse"></div>
               </div>
               <div>
-                <h3 className="font-semibold text-foreground mb-2">Multi-Network Support</h3>
-                <p className="text-muted-foreground text-sm">Manage validators across multiple Cosmos ecosystem networks.</p>
+                <h3 className="font-semibold text-foreground mb-3 text-lg group-hover:text-purple-300 transition-colors duration-300">Multi-Network Support</h3>
+                <p className="text-muted-foreground leading-relaxed">Manage validators across multiple cosmic blockchain networks and explore new frontiers.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Latest Updates Section */}
-      <div className="mb-16">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Latest Updates</h2>
-          <p className="text-muted-foreground">Stay informed about network upgrades and important announcements</p>
+      {/* Enhanced Latest Updates Section */}
+      <div className="mb-20">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Cosmic Updates</h2>
+          <p className="text-muted-foreground text-lg">Stay informed about network upgrades and cosmic announcements</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="bg-card/50 border-border">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Card className="glass-dark border-blue-500/20 hover-lift group">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <Badge variant="outline" className="bg-blue-500/10 text-blue-400 border-blue-500/20">
@@ -221,19 +305,19 @@ export default function HomePage() {
                 </Badge>
                 <span className="text-xs text-muted-foreground">2 days ago</span>
               </div>
-              <CardTitle className="text-lg">Cosmos Hub v18 Upgrade</CardTitle>
+              <CardTitle className="text-lg group-hover:text-blue-300 transition-colors duration-300">Cosmos Hub v19 Upgrade</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                The Cosmos Hub network has successfully upgraded to v18 with new features and improvements.
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                The Cosmos Hub network has successfully upgraded to v19 with enhanced cosmic features and stellar improvements.
               </p>
-              <Link href="/guides" className="text-purple-400 hover:text-purple-300 text-sm font-medium">
-                Read upgrade guide →
+              <Link href="/guides" className="text-blue-400 hover:text-blue-300 text-sm font-medium group-hover:underline transition-all duration-300">
+                Read cosmic guide →
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="bg-card/50 border-border">
+          <Card className="glass-dark border-green-500/20 hover-lift group">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <Badge variant="outline" className="bg-green-500/10 text-green-400 border-green-500/20">
@@ -241,19 +325,19 @@ export default function HomePage() {
                 </Badge>
                 <span className="text-xs text-muted-foreground">1 week ago</span>
               </div>
-              <CardTitle className="text-lg">Enhanced Monitoring</CardTitle>
+              <CardTitle className="text-lg group-hover:text-green-300 transition-colors duration-300">Enhanced Cosmic Monitoring</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                New real-time alerts and performance metrics have been added to the dashboard.
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                New real-time cosmic alerts and performance metrics have been added to the stellar dashboard.
               </p>
-              <Link href="/dashboard" className="text-purple-400 hover:text-purple-300 text-sm font-medium">
+              <Link href="/dashboard" className="text-green-400 hover:text-green-300 text-sm font-medium group-hover:underline transition-all duration-300">
                 Explore dashboard →
               </Link>
             </CardContent>
           </Card>
 
-          <Card className="bg-card/50 border-border">
+          <Card className="glass-dark border-purple-500/20 hover-lift group">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <Badge variant="outline" className="bg-purple-500/10 text-purple-400 border-purple-500/20">
@@ -261,39 +345,39 @@ export default function HomePage() {
                 </Badge>
                 <span className="text-xs text-muted-foreground">2 weeks ago</span>
               </div>
-              <CardTitle className="text-lg">Backup Tool v2.0</CardTitle>
+              <CardTitle className="text-lg group-hover:text-purple-300 transition-colors duration-300">Cosmic Backup Tool v3.0</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                Updated backup and recovery tool with automated scheduling and cloud storage support.
+              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                Updated backup and recovery tool with automated cosmic scheduling and interstellar storage support.
               </p>
-              <Link href="/tools" className="text-purple-400 hover:text-purple-300 text-sm font-medium">
-                View tools →
+              <Link href="/tools" className="text-purple-400 hover:text-purple-300 text-sm font-medium group-hover:underline transition-all duration-300">
+                Launch tools →
               </Link>
             </CardContent>
           </Card>
         </div>
       </div>
 
-      {/* Call to Action Section */}
-      <div className="bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-lg p-8 border border-purple-500/20 text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Start Validating?</h2>
-        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Join thousands of validators who trust ChainView for their blockchain operations. 
-          Get started with our comprehensive guides and tools.
+      {/* Enhanced Call to Action Section */}
+      <div className="nebula-gradient rounded-2xl p-12 border border-purple-500/20 text-center">
+        <h2 className="text-4xl font-bold mb-6 cosmic-gradient-text">Ready to Explore the Cosmos?</h2>
+        <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-lg leading-relaxed">
+          Join thousands of cosmic validators who trust our platform for their blockchain operations. 
+          Begin your journey through the universe with our comprehensive guides and stellar tools.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <Link 
             href="/guides"
-            className="inline-flex items-center justify-center rounded-md bg-purple-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-purple-700"
+            className="btn-cosmic inline-flex items-center justify-center rounded-xl px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover-lift"
           >
-            Start with Guides
+            Start Cosmic Journey
           </Link>
           <Link 
             href="/tools"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="inline-flex items-center justify-center rounded-xl border-2 border-purple-400/40 glass px-8 py-4 text-lg font-semibold transition-all duration-300 hover-lift hover:border-purple-300 hover:bg-purple-500/10"
           >
-            Explore Tools
+            Explore Stellar Tools
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 export default function GalaxyBackground() {
@@ -8,6 +8,7 @@ export default function GalaxyBackground() {
   const sceneRef = useRef<THREE.Scene | null>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const animationIdRef = useRef<number | null>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     if (!mountRef.current) return
@@ -36,17 +37,18 @@ export default function GalaxyBackground() {
       rendererRef.current = renderer
       mountRef.current.appendChild(renderer.domElement)
 
-      // Create starfield
+      // Create simple starfield (small smooth points only)
       const starsGeometry = new THREE.BufferGeometry()
       const starsMaterial = new THREE.PointsMaterial({
         color: 0xffffff,
-        size: 2,
+        size: 0.5,
         transparent: true,
-        opacity: 0.8
+        opacity: 0.8,
+        sizeAttenuation: true
       })
 
       const starsVertices = []
-      for (let i = 0; i < 10000; i++) {
+      for (let i = 0; i < 3000; i++) {
         const x = (Math.random() - 0.5) * 2000
         const y = (Math.random() - 0.5) * 2000
         const z = (Math.random() - 0.5) * 2000
@@ -57,157 +59,95 @@ export default function GalaxyBackground() {
       const stars = new THREE.Points(starsGeometry, starsMaterial)
       scene.add(stars)
 
-      // Create galaxy spiral
+      // Create simple galaxy spiral (very subtle, no cubes)
       const galaxyGeometry = new THREE.BufferGeometry()
       const galaxyMaterial = new THREE.PointsMaterial({
-        color: 0x9333ea,
-        size: 1.5,
+        color: 0x3b82f6,
+        size: 0.3,
         transparent: true,
-        opacity: 0.6
+        opacity: 0.4,
+        sizeAttenuation: true
       })
 
       const galaxyVertices = []
-      const galaxyColors = []
       
-      for (let i = 0; i < 5000; i++) {
+      for (let i = 0; i < 1500; i++) {
         const angle = Math.random() * Math.PI * 2
-        const radius = Math.random() * 50 + 10
-        const spiralAngle = angle + radius * 0.1
+        const radius = Math.random() * 100 + 30
+        const spiralAngle = angle + radius * 0.03
         
         const x = Math.cos(spiralAngle) * radius
-        const y = (Math.random() - 0.5) * 10
+        const y = (Math.random() - 0.5) * 5
         const z = Math.sin(spiralAngle) * radius
         
         galaxyVertices.push(x, y, z)
-        
-        // Color gradient from purple to white
-        const color = new THREE.Color()
-        color.setHSL(0.75 + Math.random() * 0.1, 0.8, 0.5 + Math.random() * 0.5)
-        galaxyColors.push(color.r, color.g, color.b)
       }
 
       galaxyGeometry.setAttribute('position', new THREE.Float32BufferAttribute(galaxyVertices, 3))
-      galaxyGeometry.setAttribute('color', new THREE.Float32BufferAttribute(galaxyColors, 3))
-      
-      galaxyMaterial.vertexColors = true
       const galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial)
       scene.add(galaxy)
 
-      // Create planets
+      // Create a few simple planets (spheres only)
       const planets: THREE.Mesh[] = []
-      const glowMeshes: THREE.Mesh[] = []
+      const planetData = [
+        { size: 0.4, color: 0x3b82f6, position: [20, 8, -30] },
+        { size: 0.3, color: 0x1e40af, position: [-25, -12, -40] },
+        { size: 0.35, color: 0x60a5fa, position: [30, -8, -50] }
+      ]
       
-      // Planet 1 - Purple glow
-      const planet1Geometry = new THREE.SphereGeometry(0.5, 32, 32)
-      const planet1Material = new THREE.MeshBasicMaterial({
-        color: 0x9333ea,
-        transparent: true,
-        opacity: 0.8
-      })
-      const planet1 = new THREE.Mesh(planet1Geometry, planet1Material)
-      planet1.position.set(15, 5, -20)
-      scene.add(planet1)
-      planets.push(planet1)
-
-      // Planet 2 - Blue glow
-      const planet2Geometry = new THREE.SphereGeometry(0.3, 32, 32)
-      const planet2Material = new THREE.MeshBasicMaterial({
-        color: 0x3b82f6,
-        transparent: true,
-        opacity: 0.7
-      })
-      const planet2 = new THREE.Mesh(planet2Geometry, planet2Material)
-      planet2.position.set(-20, -8, -30)
-      scene.add(planet2)
-      planets.push(planet2)
-
-      // Planet 3 - White glow
-      const planet3Geometry = new THREE.SphereGeometry(0.4, 32, 32)
-      const planet3Material = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0.6
-      })
-      const planet3 = new THREE.Mesh(planet3Geometry, planet3Material)
-      planet3.position.set(25, -10, -40)
-      scene.add(planet3)
-      planets.push(planet3)
-
-      // Add glow effects to planets
-      planets.forEach((planet, index) => {
-        const radius = (planet.geometry as THREE.SphereGeometry).parameters?.radius || 0.5
-        const glowGeometry = new THREE.SphereGeometry(radius * 2, 32, 32)
-        const planetMaterial = planet.material as THREE.MeshBasicMaterial
-        const glowMaterial = new THREE.ShaderMaterial({
-          uniforms: {
-            time: { value: 0 },
-            color: { value: new THREE.Color(planetMaterial.color) }
-          },
-          vertexShader: `
-            varying vec3 vNormal;
-            void main() {
-              vNormal = normalize(normalMatrix * normal);
-              gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-            }
-          `,
-          fragmentShader: `
-            uniform float time;
-            uniform vec3 color;
-            varying vec3 vNormal;
-            void main() {
-              float intensity = pow(0.7 - dot(vNormal, vec3(0, 0, 1.0)), 2.0);
-              intensity *= (sin(time * 2.0) * 0.3 + 0.7);
-              gl_FragColor = vec4(color, intensity * 0.3);
-            }
-          `,
+      planetData.forEach((data) => {
+        const planetGeometry = new THREE.SphereGeometry(data.size, 16, 16)
+        const planetMaterial = new THREE.MeshBasicMaterial({
+          color: data.color,
           transparent: true,
-          blending: THREE.AdditiveBlending,
-          side: THREE.BackSide
+          opacity: 0.6
         })
-        
-        const glow = new THREE.Mesh(glowGeometry, glowMaterial)
-        glow.position.copy(planet.position)
-        scene.add(glow)
-        glowMeshes.push(glow)
+        const planet = new THREE.Mesh(planetGeometry, planetMaterial)
+        planet.position.set(data.position[0], data.position[1], data.position[2])
+        scene.add(planet)
+        planets.push(planet)
       })
 
-      // Lighting
+      // Simple ambient lighting
       const ambientLight = new THREE.AmbientLight(0x404040, 0.4)
       scene.add(ambientLight)
 
-      const pointLight = new THREE.PointLight(0x9333ea, 1, 100)
-      pointLight.position.set(10, 10, 10)
-      scene.add(pointLight)
+      // Fade in effect
+      let fadeOpacity = 0
+      const fadeInDuration = 2000
+      const startTime = Date.now()
 
-      // Animation loop
+      // Simple animation loop
       const animate = () => {
         animationIdRef.current = requestAnimationFrame(animate)
 
         const time = Date.now() * 0.001
+        const elapsed = Date.now() - startTime
 
-        // Rotate stars slowly
-        stars.rotation.y += 0.0005
+        // Fade in effect
+        if (elapsed < fadeInDuration) {
+          fadeOpacity = elapsed / fadeInDuration
+          starsMaterial.opacity = 0.8 * fadeOpacity
+          galaxyMaterial.opacity = 0.4 * fadeOpacity
+        } else if (!isLoaded) {
+          setIsLoaded(true)
+        }
+
+        // Slow star rotation
+        stars.rotation.y += 0.0002
         
-        // Rotate galaxy
-        galaxy.rotation.y += 0.001
-        
-        // Animate planets
+        // Slow galaxy rotation
+        galaxy.rotation.y += 0.0005
+
+        // Simple planet rotation
         planets.forEach((planet, index) => {
-          planet.rotation.y += 0.01 + index * 0.005
-          planet.position.y += Math.sin(time + index) * 0.01
+          planet.rotation.y += 0.005 + index * 0.002
+          planet.rotation.x += 0.003 + index * 0.001
         })
 
-        // Animate glow effects
-        glowMeshes.forEach((glow, index) => {
-          const material = glow.material as THREE.ShaderMaterial
-          if (material.uniforms) {
-            material.uniforms.time.value = time
-          }
-        })
-
-        // Camera gentle movement
-        camera.position.x = Math.sin(time * 0.1) * 0.5
-        camera.position.y = Math.cos(time * 0.15) * 0.3
+        // Minimal camera movement
+        camera.position.x = Math.sin(time * 0.02) * 0.3
+        camera.position.y = Math.cos(time * 0.025) * 0.2
 
         renderer.render(scene, camera)
       }
@@ -238,14 +178,18 @@ export default function GalaxyBackground() {
         }
         
         // Dispose of Three.js objects
-        scene.traverse((object) => {
+        scene.traverse((object: THREE.Object3D) => {
           if (object instanceof THREE.Mesh) {
-            object.geometry.dispose()
+            if (object.geometry) object.geometry.dispose()
             if (Array.isArray(object.material)) {
-              object.material.forEach(material => material.dispose())
-            } else {
+              object.material.forEach((material: THREE.Material) => material.dispose())
+            } else if (object.material) {
               object.material.dispose()
             }
+          }
+          if (object instanceof THREE.Points) {
+            if (object.geometry) object.geometry.dispose()
+            if (object.material) object.material.dispose()
           }
         })
         
@@ -259,7 +203,9 @@ export default function GalaxyBackground() {
   return (
     <div 
       ref={mountRef} 
-      className="fixed inset-0 -z-10 pointer-events-none"
+      className={`fixed inset-0 -z-10 pointer-events-none transition-opacity duration-2000 ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      }`}
       style={{ zIndex: -1 }}
     />
   )
