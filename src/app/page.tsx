@@ -1,21 +1,35 @@
+"use client"
+
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 export default function HomePage() {
+  const heroAnimation = useScrollAnimation(0.1)
+  const servicesAnimation = useScrollAnimation(0.1)
+  const featuresAnimation = useScrollAnimation(0.1)
+  const networksAnimation = useScrollAnimation(0.1)
+  const statsAnimation = useScrollAnimation(0.1)
+  const whyChooseAnimation = useScrollAnimation(0.1)
+  const updatesAnimation = useScrollAnimation(0.1)
+  const ctaAnimation = useScrollAnimation(0.1)
   return (
     <div className="container mx-auto px-4 py-8 space-y-20">
       {/* Enhanced Hero Section */}
-      <div className="flex flex-col items-center text-center space-y-10 mb-24">
+      <div 
+        ref={heroAnimation.ref}
+        className={`flex flex-col items-center text-center space-y-10 mb-24 scroll-fade-in-up ${heroAnimation.isVisible ? 'visible' : ''}`}
+      >
         <div className="space-y-8 animate-float">
-          <h1 className="text-6xl md:text-8xl font-bold cosmic-gradient-text leading-tight animate-fade-in">
+          <h1 className="text-6xl md:text-8xl font-bold cosmic-gradient-text leading-tight">
             Cosmic Validator Hub
           </h1>
           <div className="space-y-4">
-            <p className="text-2xl md:text-3xl text-muted-foreground max-w-5xl mx-auto leading-relaxed animate-slide-in-left">
+            <p className="text-2xl md:text-3xl text-muted-foreground max-w-5xl mx-auto leading-relaxed">
               Navigate the vast cosmos of blockchain validation
             </p>
-            <p className="text-lg md:text-xl text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed animate-slide-in-right">
+            <p className="text-lg md:text-xl text-muted-foreground/80 max-w-4xl mx-auto leading-relaxed">
               Monitor your PoS validator nodes, explore network performance, and stay synchronized with real-time statistics across the blockchain universe.
             </p>
           </div>
@@ -38,14 +52,17 @@ export default function HomePage() {
       </div>
 
       {/* Featured Services Section */}
-      <div className="mb-20">
+      <div 
+        ref={servicesAnimation.ref}
+        className={`mb-20 scroll-fade-in ${servicesAnimation.isVisible ? 'visible' : ''}`}
+      >
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Featured Services</h2>
           <p className="text-muted-foreground text-lg">Discover the power of our cosmic validation platform</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <Card className="glass-dark border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-500 animate-cosmic-drift">
+          <Card className="glass-dark border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-500 animate-cosmic-drift scroll-fade-in-up scroll-stagger-1">
             <CardHeader className="pb-4">
               <div className="w-16 h-16 rounded-full cosmic-gradient mx-auto mb-4 flex items-center justify-center animate-pulse">
                 <div className="w-8 h-8 rounded-full bg-white/20"></div>
@@ -62,7 +79,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="glass-dark border-blue-500/20 card-3d group hover:border-blue-400/40 transition-all duration-500 animate-cosmic-drift" style={{ animationDelay: '1s' }}>
+          <Card className="glass-dark border-blue-500/20 card-3d group hover:border-blue-400/40 transition-all duration-500 animate-cosmic-drift scroll-fade-in-up scroll-stagger-2">
             <CardHeader className="pb-4">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-700/20 mx-auto mb-4 flex items-center justify-center animate-pulse">
                 <div className="w-8 h-8 rounded-full bg-blue-400/30"></div>
@@ -79,7 +96,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="glass-dark border-green-500/20 card-3d group hover:border-green-400/40 transition-all duration-500 animate-cosmic-drift" style={{ animationDelay: '2s' }}>
+          <Card className="glass-dark border-green-500/20 card-3d group hover:border-green-400/40 transition-all duration-500 animate-cosmic-drift scroll-fade-in-up scroll-stagger-3">
             <CardHeader className="pb-4">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-500/20 to-green-700/20 mx-auto mb-4 flex items-center justify-center animate-pulse">
                 <div className="w-8 h-8 rounded-full bg-green-400/30"></div>
@@ -96,7 +113,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="glass-dark border-yellow-500/20 card-3d group hover:border-yellow-400/40 transition-all duration-500 animate-cosmic-drift" style={{ animationDelay: '3s' }}>
+          <Card className="glass-dark border-yellow-500/20 card-3d group hover:border-yellow-400/40 transition-all duration-500 animate-cosmic-drift scroll-fade-in-up scroll-stagger-4">
             <CardHeader className="pb-4">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-500/20 to-yellow-700/20 mx-auto mb-4 flex items-center justify-center animate-pulse">
                 <div className="w-8 h-8 rounded-full bg-yellow-400/30"></div>
@@ -116,7 +133,10 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Features Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+      <div 
+        ref={featuresAnimation.ref}
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 scroll-fade-in ${featuresAnimation.isVisible ? 'visible' : ''}`}
+      >
         <Card className="glass border-purple-500/20 card-3d group hover:border-purple-400/40 transition-all duration-300 hover-glow">
           <CardHeader className="pb-4">
             <CardTitle className="text-purple-400 text-xl group-hover:text-purple-300 transition-colors duration-300">Real-time Monitoring</CardTitle>
@@ -158,7 +178,10 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Supported Networks Section */}
-      <div className="mb-20">
+      <div 
+        ref={networksAnimation.ref}
+        className={`mb-20 scroll-fade-in ${networksAnimation.isVisible ? 'visible' : ''}`}
+      >
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Cosmic Network Support</h2>
           <p className="text-muted-foreground text-lg">Monitor validators across leading blockchain networks in the cosmos</p>
@@ -189,7 +212,10 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Stats Section */}
-      <div className="milky-way-gradient rounded-2xl p-12 border border-purple-500/20 mb-20">
+      <div 
+        ref={statsAnimation.ref}
+        className={`milky-way-gradient rounded-2xl p-12 border border-purple-500/20 mb-20 scroll-fade-in-up ${statsAnimation.isVisible ? 'visible' : ''}`}
+      >
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Cosmic Network Overview</h2>
           <p className="text-muted-foreground text-lg">Current statistics across all monitored networks in the universe</p>
@@ -216,7 +242,10 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Why Choose Section */}
-      <div className="mb-20">
+      <div 
+        ref={whyChooseAnimation.ref}
+        className={`mb-20 scroll-fade-in ${whyChooseAnimation.isVisible ? 'visible' : ''}`}
+      >
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Why Choose Cosmic Validator Hub?</h2>
           <p className="text-muted-foreground text-lg">Everything you need to navigate the blockchain cosmos</p>
@@ -290,7 +319,10 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Latest Updates Section */}
-      <div className="mb-20">
+      <div 
+        ref={updatesAnimation.ref}
+        className={`mb-20 scroll-fade-in ${updatesAnimation.isVisible ? 'visible' : ''}`}
+      >
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4 cosmic-gradient-text">Cosmic Updates</h2>
           <p className="text-muted-foreground text-lg">Stay informed about network upgrades and cosmic announcements</p>
@@ -360,7 +392,10 @@ export default function HomePage() {
       </div>
 
       {/* Enhanced Call to Action Section */}
-      <div className="nebula-gradient rounded-2xl p-12 border border-purple-500/20 text-center">
+      <div 
+        ref={ctaAnimation.ref}
+        className={`nebula-gradient rounded-2xl p-12 border border-purple-500/20 text-center scroll-fade-in-up ${ctaAnimation.isVisible ? 'visible' : ''}`}
+      >
         <h2 className="text-4xl font-bold mb-6 cosmic-gradient-text">Ready to Explore the Cosmos?</h2>
         <p className="text-muted-foreground mb-8 max-w-3xl mx-auto text-lg leading-relaxed">
           Join thousands of cosmic validators who trust our platform for their blockchain operations. 

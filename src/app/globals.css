@@ -361,16 +361,65 @@
     0 0 60px rgba(147, 51, 234, 0.1);
 }
 
-/* Scroll animations */
+/* Enhanced Scroll animations */
 .scroll-fade-in {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scroll-fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.scroll-fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-fade-in-up {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-stagger-1 {
+  transition-delay: 0.1s;
+}
+
+.scroll-stagger-2 {
+  transition-delay: 0.2s;
+}
+
+.scroll-stagger-3 {
+  transition-delay: 0.3s;
+}
+
+.scroll-stagger-4 {
+  transition-delay: 0.4s;
 }
 
 /* Button enhancements */
